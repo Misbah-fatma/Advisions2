@@ -36,6 +36,7 @@ const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const state = useSelector(state => state.cart)
   let componentMounted = true;
@@ -119,13 +120,24 @@ const Products = () => {
     );
   };
 
+  const filterProducts = () => {
+    return filter.filter(product =>
+      product.courseName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
 
 
   const ShowProducts = () => {
+    const filteredProducts = filterProducts();
   
     return (
       <>
-   {filter.map((product) => {
+   {filteredProducts.map((product) => {
 
           return (
             <div id={product.id} key={product.id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"> 
@@ -181,7 +193,7 @@ const Products = () => {
             {product.coursePrice} $
           </Heading>
           </HStack>
-          <Link to = "/NoticeToggle">
+          <Link to = "/courseInfo1">
           <HStack>
           <BsListUl size={20} />
           <Heading
@@ -240,8 +252,8 @@ const Products = () => {
             <BsSearch color="gray.300" />
           </InputLeftElement>
           <Input
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            value={searchQuery}
+            onChange={handleSearchChange}
             placeholder="Search a course ..."
           />
         </InputGroup>

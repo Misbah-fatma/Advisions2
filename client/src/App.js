@@ -48,6 +48,7 @@ import CheckOut from "./pages/AddToCart/Checkout.js"
 import Products from "./pages/LandingPage/Products.js"
 import Navbar from "./pages/LandingPage/Navbar.js";
 import Profile2 from "./pages/ProfilePage/profile.js";
+import CourseInfo1 from "./pages/LandingPage/CourseInfo.js";
 
 
 
@@ -119,6 +120,9 @@ const Routing = () => {
           <Route exact path="/NoticeToggle">
         <NoticeToggle />
       </Route>
+      <Route exact path="/CourseInfo">
+        <CourseInfo />
+      </Route>
       <Route exact path="/product/:id">
         <Products />
         </Route>
@@ -132,8 +136,8 @@ const Routing = () => {
       <Route exact path="/all-courses">
         <AllCourses />
       </Route>
-      <Route exact path="/course/:courseId">
-        <CourseInfo />
+      <Route exact path="/courseInfo1">
+        <CourseInfo1 />
       </Route>
       <Route exact path="/home">
         <Home />
